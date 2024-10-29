@@ -1,5 +1,3 @@
-import javax.crypto.spec.DESKeySpec;
-
 public class main {
   public static void main(String[] args) {
     // Prints "Hello, World" in the terminal window.
