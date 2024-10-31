@@ -43,7 +43,7 @@ public class doubleTrouble {
             currentGame++;
         }
         if(this.winCount[0] > this.winCount[1]){
-            System.out.println("IMPOSSIBLE HOW DID YOU BEAT ME NOOOOOOOOOOOOOOOO????" + "(You has won the best of " + ((neededWins*2)-1) + ")");
+            System.out.println("IMPOSSIBLE HOW DID YOU BEAT ME NOOOOOOOOOOOOOOOO????" + "(You have won the best of " + ((neededWins*2)-1) + ")");
         }
         else{
             System.out.println("I AM THE WINNER OF DOUBLE TROUBLEEE (Computer has won the best of " + ((neededWins*2)-1) + ")");
