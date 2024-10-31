@@ -8,7 +8,7 @@ public class doubleTrouble {
     private boolean winner; // when true, the player has won
     private boolean player; // When true, player is on their turn 
     private boolean gameRunning; // When true, a game is being played
-    private int currentGame;
+    private int currentGame; // Game Number 
 
     private int[] colorCount; // Yellow, Orange, Green  
     private ArrayList<String> colorOrder = new ArrayList<String>();
@@ -28,9 +28,14 @@ public class doubleTrouble {
         System.out.println("Welcome lowly human... Prepared to be DESTROYED");
         this.currentGame = 1;
         System.out.println("Choose how many winning games the winner has to be: ");
-        
-        int neededWins = scanner.nextInt(); // ADD input check
+
+        int neededWins = scanner.nextInt(); // Input check
         scanner.nextLine();
+        while(neededWins <= 0){
+            System.out.println("Choose a valid win count: ");
+            neededWins = scanner.nextInt(); 
+            scanner.nextLine();
+        }
 
         while (this.winCount[this.winner ? 0: 1] < neededWins) { // checks if number of wins is met for both players 
             System.out.println("Game Number: " + this.currentGame);
@@ -38,10 +43,10 @@ public class doubleTrouble {
             currentGame++;
         }
         if(this.winCount[0] > this.winCount[1]){
-            System.out.println("IMPOSSIBLE HOW DID YOU BEAT ME NOOOOOOOOOOOOOOOO????" + "(You has won the best of " + ((neededWins*2)+1) + ")");
+            System.out.println("IMPOSSIBLE HOW DID YOU BEAT ME NOOOOOOOOOOOOOOOO????" + "(You has won the best of " + ((neededWins*2)-1) + ")");
         }
         else{
-            System.out.println("I AM THE WINNER OF DOUBLE TROUBLEEE (Computer has won the best of " + ((neededWins*2)+1) + ")");
+            System.out.println("I AM THE WINNER OF DOUBLE TROUBLEEE (Computer has won the best of " + ((neededWins*2)-1) + ")");
         }
     }
     
@@ -49,7 +54,6 @@ public class doubleTrouble {
         /**
          * Plays 1 games of double trouble.
          */
-
         startingGameConditions(); // Ask for game conditions
         while(this.gameRunning){
             takeTurn(); 
