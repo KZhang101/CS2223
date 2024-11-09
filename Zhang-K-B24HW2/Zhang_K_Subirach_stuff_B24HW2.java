@@ -17,6 +17,16 @@ public class Zhang_K_Subirach_stuff_B24HW2 {
             return sum==magicNumber;
         } 
 
+        // /**
+        //  * Checks if a list equals to the magic number but prints
+        //  */
+        // private boolean isSumPrint(int[] nums, int magicNumber){
+        //     int sum = 0;
+        //     for(int i=0; i < nums.length; i++) sum+=nums[i];
+        //     System.out.println(sum);
+        //     return sum==magicNumber;
+        // } 
+
         /**
          * Finds the number of subsets of size 4 that sum to the magic number 
          * Run this function
@@ -99,12 +109,25 @@ public class Zhang_K_Subirach_stuff_B24HW2 {
                     int count = countSubsets(0, 0, new int[size], 0, size, sumCheck);
                     System.out.print("Subset Size: " + size); 
                     System.out.print(" |Number of Combinations: " + checker);
-                    System.out.println(" |Number of sum 33: " + count);
+                    System.out.println(" |Number of sum "+ sumCheck + ": " + count);
                 }
             }
 
         }
 
+        private void greatestPossibleCombination(){
+           // int max = 0;
+            //for(int i = 0; i<this.magicSize; i++) max += this.magicList[i]; // Find sum of all 16 numbers 
+            for(int sumCheck = 35; sumCheck<=98; sumCheck++){ // Iterate throug all sums between 35-98 
+                //(visual help to see where the sums count start and end)
+                int size = 8; // half of list size is the largest combination 
+                this.checker = 0;
+                int count = countSubsets(0, 0, new int[size], 0, size, sumCheck);
+                System.out.print("Subset Size: " + size); 
+                System.out.print(" |Number of Combinations: " + checker);
+                System.out.println(" |Number of sum "+ sumCheck + ": " + count);
+            }
+        }
 
     }
 
@@ -118,6 +141,7 @@ public class Zhang_K_Subirach_stuff_B24HW2 {
     public static void main(String[] args) {
         subirachs magic = new subirachs();
         Scanner scanner = new Scanner(System.in);
+        
         System.out.println("Press enter to see number of sum 33 for subset of 4");
         scanner.nextLine();
         magic.all4Subsets();
@@ -127,6 +151,11 @@ public class Zhang_K_Subirach_stuff_B24HW2 {
         System.out.println("\nPress enter to see number of sum 0-max possible sum for subset of 0-16");
         scanner.nextLine();
         magic.allPossibleSums();
+        System.out.println("\nPress enter to see number of possible sums for largest number of combinations");
+        System.out.println("Biggest combinations size is the when subset size is half of the original list");
+        scanner.nextLine();
+        magic.greatestPossibleCombination();
+        System.out.println("Largest count was sum of 66 where it is exatly half of the max sum of 132");
     }
 
 }
