@@ -1,5 +1,5 @@
 # CS2223
-# Run Zhang_K_Lucas_stuff_B24HW2
+# Run Zhang_K_Lucas_stuff_B24HW2 and Zhang_K_Subirach_stuff_B24HW2 separately. 
 Run Zhang_K_Lucas_stuff_B24HW2 and Zhang_K_Subirach_stuff_B24HW2 separately. 
 There will be inputs guiding you through each step, ensuring which function is being implemented.
 
