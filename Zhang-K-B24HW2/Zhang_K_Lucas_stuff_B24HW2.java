@@ -1,11 +1,22 @@
 import java.time.LocalTime;
 import java.time.Duration;
+import java.util.Scanner;
 
 public class Zhang_K_Lucas_stuff_B24HW2 {
     
     public static void main(String[] args) {
-        //calcLucasTime(45);
-        calcMyNumTime(20);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Choose a num for Lucas Num");
+        int input = scanner.nextInt();
+        scanner.nextLine();
+        calcLucasTime(input);
+
+
+        System.out.println("Choose a num for my initial conditions");
+        System.out.println("f(0) = 10 | f(1) = 29");
+        input = scanner.nextInt();
+        scanner.nextLine();
+        calcMyNumTime(input);
     }    
 
     /**

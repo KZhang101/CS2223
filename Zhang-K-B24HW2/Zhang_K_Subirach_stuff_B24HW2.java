@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class Zhang_K_Subirach_stuff_B24HW2 {
 
     public static class subirachs{
@@ -116,9 +117,16 @@ public class Zhang_K_Subirach_stuff_B24HW2 {
     
     public static void main(String[] args) {
         subirachs magic = new subirachs();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Press enter to see number of sum 33 for subset of 4");
+        scanner.nextLine();
         magic.all4Subsets();
-        //magic.allXSubsets();
-        //magic.allPossibleSums();
+        System.out.println("\nPress enter to see number of sum 33 for subset of 0-16");
+        scanner.nextLine();
+        magic.allXSubsets();
+        System.out.println("\nPress enter to see number of sum 0-max possible sum for subset of 0-16");
+        scanner.nextLine();
+        magic.allPossibleSums();
     }
 
 }
