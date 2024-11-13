@@ -38,7 +38,7 @@ public class fastinversioncount {
                 }
             }
         }
-        System.out.println("Inversion Count: " + inversions);
+        System.out.println("Inversion Count from checker (Not merge sort): " + inversions);
     }
 
 
@@ -104,6 +104,6 @@ public class fastinversioncount {
         mergeSort(input);
         System.out.println("Sorted list for merge sort");
         printList(input);
-        System.out.println(counter);
+        System.out.println("Inversion counted from merge sort: " + counter);
     }
 }
