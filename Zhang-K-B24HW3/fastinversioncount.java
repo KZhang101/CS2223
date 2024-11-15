@@ -5,6 +5,10 @@ import java.util.Scanner;
 public class fastinversioncount {
     public static int counter = 0;
 
+    /**
+     *  Ask the user to input a list of nums, separated by commas. 
+     * @return
+     */
     public static Integer[] getList(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("type you list as 1,2,3,4,5 where each number is seperated by a comma.");
@@ -38,7 +42,7 @@ public class fastinversioncount {
                 }
             }
         }
-        System.out.println("Inversion Count from checker (Not merge sort): " + inversions);
+        System.out.println("Inversion Count from brute force checker (Not merge sort): " + inversions);
     }
 
 

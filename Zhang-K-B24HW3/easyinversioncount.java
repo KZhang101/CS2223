@@ -3,6 +3,10 @@ import java.util.Scanner;
 
 public class easyinversioncount {
 
+    /**
+     * Ask the user to input a list of nums, separated by commas. 
+     * @return
+     */
     public static Integer[] getList(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("type you list as 1,2,3,4,5 where each number is seperated by a comma.");
@@ -27,6 +31,10 @@ public class easyinversioncount {
         System.out.println(list[list.length-1]);
     }
 
+    /**
+     * Brute force check on inversion just to check
+     * @param list
+     */
     public static void inversionCheck(Integer[] list){
         int inversions = 0;
         for(int i = 0; i < list.length; i++){
@@ -36,9 +44,13 @@ public class easyinversioncount {
                 }
             }
         }
-        System.out.println("Inversion Count: " + inversions);
+        System.out.println("Inversion Count Brute Force (JUST TO CHECK): " + inversions);
     }
 
+    /**
+     * Bubble sort and checks inversion within it
+     * @param uList
+     */
     public static void bubbleSort(Integer[] uList){
 
         boolean swap = true;
