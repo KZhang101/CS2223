@@ -7,26 +7,21 @@ public class GaussJordanElim{
             performGJE(m, b);
         };
 
+        /**
+         * Copies a matrix to a larger matrix
+         * @param m
+         * @param newM
+         * @returnm m -> newM 
+         */
         private float[][] copyM(float[][] m, float[][] newM){
             int len = m.length;
             for(int i = 0; i < len; i++){
                 for(int k = 0; k<len; k++){
                     newM[i][k] = m[i][k];
-                    
                 }
             }
-
             return newM;
         }
-
-        private void swapRow(float[] a, float[] b){
-            for(int i = 0; i < a.length; i++){
-                float temp = a[i];
-                a[i] = b[i];
-                b[i] = temp;
-            }
-        }
-
 
 
         private void performGJE(float[][] m, float[] b){
@@ -34,32 +29,40 @@ public class GaussJordanElim{
             float[][] sysM = new float[mLen][mLen+1];
             sysM = copyM(m, sysM);
 
+            // put vector b into last colum of new matrix
             for(int i = 0; i < mLen; i++){
                 sysM[i][mLen] = b[i]; // last column
             }
-
-            for(int i = 0; i < mLen; i++){ // for each row
-                int pivotRow = i;
-                for(int j = i + 1; j < mLen; j++){
-                    if(sysM[j][i] > sysM[pivotRow][i]) pivotRow = j;
-                }
-                swapRow(sysM[i], sysM[pivotRow]);
-
-
-                float pivot = sysM[i][i]; // pivot value
-                for(int j = i; j < mLen + 1; j++){ // for each colum in pivot row
-                    sysM[i][j] = sysM[i][j]/ pivot; // divide row by pivot (makes pivot point 1)
+            
+            for(int col = 0; col < mLen; col++){ 
+                int pivotRow = col; 
+                for (int row = col + 1; row < mLen; row++) { //check every row to see if the pivot value
+                    if (Math.abs(sysM[row][col]) > Math.abs(sysM[pivotRow][col])) {
+                        pivotRow = row;
+                    }
                 }
 
-                for(int k = i+1; k < mLen; k++){ // for next row after pivot
-                    float factor = sysM[k][i];
-                    for (int j = i; j < mLen + 1; j++){ // for each column starting at pivot
-                        sysM[k][j] = sysM[k][j] - factor * sysM[i][j]; // substract lower row by pivot row
+                // Swap to row if new pivot col found 
+                if (pivotRow != col) { 
+                    float[] temp = sysM[pivotRow];
+                    sysM[pivotRow] = sysM[col];
+                    sysM[col] = temp;
+                }
+                
+                
+                float pivot = sysM[col][col]; // pivot value
+                for(int j = col; j < mLen + 1; j++){ // for each colum in pivot row
+                    sysM[col][j] = sysM[col][j]/ pivot; // divide row by pivot (makes pivot point 1)
+                }
+                
+                for(int k = col+1; k < mLen; k++){ // for next row after pivot
+                    float factor = sysM[k][col];
+                    for (int j = col; j < mLen + 1; j++){ // for each column starting at pivot
+                        sysM[k][j] = sysM[k][j] - factor * sysM[col][j]; // substract lower row by pivot row
                     }
                 }
             }
-            //printM(sysM);
-            sysM[mLen-1][mLen] = Math.round(sysM[mLen-1][mLen]);
+
             for(int i = mLen - 1; i >= 0; i--){ // start at last column to left column
                 for(int k = i-1; k >= 0; k--){ // start at second to last row to first row
                     float factor = sysM[k][i]; 
@@ -76,6 +79,7 @@ public class GaussJordanElim{
         }
 
         private void printM(float[][] m){
+            System.out.println();
             for(int i = 0; i < m.length; i++){
                 System.out.print("[");
                 for(int k = 0; k<m[i].length-1; k++){
@@ -85,12 +89,6 @@ public class GaussJordanElim{
                 System.out.println();
             }
         }
-
-
-
-
-
-
     }
 
 
@@ -110,13 +108,11 @@ public class GaussJordanElim{
             {11, -10, 9, -8, 7, -6, 5, -4, 3, -2, 1}};
 
         float[] b
-            = {2047, 3, 12, 48, 684, 1536, 5, 50, 1952, 4083, 459};
+            = {2047, 3, 12, 48, 384, 1536, 5, 50, 1952, 4083, 459};
 
 
         GJE elim = new GJE(m, b);
 
-        
-        
     }
 
 
