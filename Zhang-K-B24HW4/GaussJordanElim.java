@@ -24,6 +24,43 @@ public class GaussJordanElim{
         }
 
 
+        private int checkSolutions(float[][] matrix) {
+            boolean redundant = false;
+            boolean inconsistent = false;
+
+            for (int i = 0; i < matrix.length; i++) {
+                boolean rowZeros = true;
+                for (int j = 0; j < matrix[0].length - 1; j++) { 
+                    if (Math.abs(matrix[i][j]) > 0) { // checks if there is a possible redundant or inconsitent solutions
+                        rowZeros = false;
+                        break;
+                    }
+                }
+
+                if (rowZeros) {
+                    if (Math.abs(matrix[i][matrix[0].length - 1]) > 0) { // 0 = 0 means redundant, else inconsistent
+                        // Row is inconsistent
+                        inconsistent = true;
+                    } else {
+                        // Row is redundant
+                        redundant = true;
+                    }
+                }
+            }
+
+            if (inconsistent) {  // Throw inconsistent notice first
+                System.out.println("The system is inconsistent and has no solution.");
+                return 0;
+            }
+
+            if (redundant) {
+                System.out.println("The system has redundant equations, leading to infinite solutions.");
+            } else {
+                System.out.println("The system has a unique solution.");
+            }
+            return 1;
+        }
+
         private void performGJE(float[][] m, float[] b){
             int mLen = m.length;
             float[][] sysM = new float[mLen][mLen+1];
@@ -75,6 +112,7 @@ public class GaussJordanElim{
             }
             for(int i = 0; i < mLen; i++) sysM[i][mLen] =  Math.round(sysM[i][mLen]); // round
             printM(sysM);
+            checkSolutions(sysM);
             
         }
 
