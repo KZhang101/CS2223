@@ -31,12 +31,18 @@ public class hasing {
         question3C();
         question3D();
         question3E();
+
+        // searchHash("EDGAR");
+        // searchHash("ALLAN");
+        // searchHash("POE");
     }
 
 
 
     public void parseString(String txt){
         String words = txt.replaceAll("[^a-zA-Z0-9 ' -]", " ").replaceAll("\\s+", " ").trim();
+        //words = words.replaceAll("\\?", " ").trim();
+        //words = words.replaceAll("?", " ").trim();
         while(words.indexOf(" ") != -1){
             int index = words.indexOf(" ");
             String str = words.substring(0, index);
@@ -129,12 +135,11 @@ public class hasing {
                     //System.out.println(end);
                 } 
                 currentCount = 0;
+                if(maxWrap){
+                    end = i;
+                    start = this.hashTable.length - (maxCount - i); 
+                }
                 if(fullLoop) break;
-                
-            }
-            if(maxWrap){
-                end = i;
-                start = this.hashTable.length + i - maxCount - 1;
             }
         }
         System.out.println("Longest non-empty run is " + maxCount + " starting from " + start + " and ending at " + end);
@@ -176,7 +181,7 @@ public class hasing {
                 location = i;
             }
         }
-        System.out.println(mostDriftHash + "drifted more than any word, " + max + " places from the hash address " + 
+        System.out.println(mostDriftHash + " drifted more than any word, " + max + " places from the hash address " + 
                             (location - max) + " all the way to position " + location);
     }
 
@@ -192,8 +197,9 @@ public class hasing {
         }
     }
 
-    public int searchHash(int hashValue, String word){
-        int key = hashValue;
+    public int searchHash(String word){
+        int key = calcHashValue(word);
+        System.out.println("Actual Hash Value: " + key);
         while(!this.hashTable[key].equals("-1") && !this.hashTable[key].equals(word)){
             if(key >= (this.hashSize-1)) {
                 key = 0;
@@ -202,6 +208,7 @@ public class hasing {
                 key++;
             }
         }
+        System.out.println("Stored Address: " + key);
         return key;
     }
 
