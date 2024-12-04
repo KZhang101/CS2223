@@ -88,6 +88,7 @@ public class GaussJordanElim{
                 
                 
                 float pivot = sysM[col][col]; // pivot value
+                if(pivot == 0) continue;
                 for(int j = col; j < mLen + 1; j++){ // for each colum in pivot row
                     sysM[col][j] = sysM[col][j]/ pivot; // divide row by pivot (makes pivot point 1)
                 }
@@ -145,11 +146,20 @@ public class GaussJordanElim{
             {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1},
             {11, -10, 9, -8, 7, -6, 5, -4, 3, -2, 1}};
 
+
+
+        float [][] testBAD = {
+        {1, 1, 1},
+        {1, 1, 2}, 
+        {2, 2, 3}};
+
+        float [] b2 = {6, 9, 15};
+
         float[] b
             = {2047, 3, 12, 48, 384, 1536, 5, 50, 1952, 4083, 459};
 
 
-        GJE elim = new GJE(m, b);
+        GJE elim = new GJE(testBAD, b2);
 
     }
 
